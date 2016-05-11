@@ -41,9 +41,15 @@ int* BSTRighttoLeftRows(struct node* root)
 		int i = 0;
 		stack[index++] = root;
 		while (start < index){
+			if (stack[start]->right){
+				stack[index++] = stack[start]->right;
+			}
+			if (stack[start]->left){
+				stack[index++] = stack[start]->left;
+			}
 			arr[i++] = stack[start++]->data;
-
 		}
+		return arr;
 	}
     return NULL;
 }
