@@ -33,5 +33,15 @@ struct node{
 
 int* BSTRighttoLeftRows(struct node* root)
 {
+	if (root != NULL){
+		int* arr = (int*)malloc(sizeof(int)* 11);
+		struct node** stack = (struct node**)malloc(sizeof(struct node*) * 11);
+		int start = 0;
+		int index = 0;
+		stack[index++] = root;
+		while (start < index){
+
+		}
+	}
     return NULL;
 }
