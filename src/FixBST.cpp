@@ -22,6 +22,7 @@ Ex :In the below tree 1 and 20 are misplaced
 Nodes 1 and 20 need to be fixed here .
 
 */
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -32,6 +33,31 @@ struct node{
 	struct node *right;
 };
 
+void swap(struct node* node1, struct node* node2){
+	int temp = node1->data;
+	node1->data = node2->data;
+	node2->data = temp;
+}
+void fix(struct node* root, struct node** l, struct node** r, struct node** pre){
+	if (root != NULL){
+		fix(root->left, l, r, pre);
+		if (*pre != NULL){
+			if ((*pre)->data > root->data){
+				if (*l == NULL)
+					*l = *pre;
+				*r = root;
+			}
+		}
+		*pre = root;
+		fix(root->right, l, r, pre);
+	}
+}
 void fix_bst(struct node *root){
-
+	if (root != NULL){
+		struct node* left = NULL;
+		struct node* right = NULL;
+		struct node* pre = NULL;
+		fix(root, &left, &right,&pre);
+		swap(left, right);
+	}
 }
